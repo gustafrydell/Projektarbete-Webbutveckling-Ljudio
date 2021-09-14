@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Search results</h1>
+        <h1>Songs</h1>
         <MusicArticle v-for="result in getSearchResult" :key="result.videoId"  :MusicArticle="result"/>
     </div>
 </template>
