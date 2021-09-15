@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Search results</h1>
-        <MusicArticle v-for="result in getSearchResult" :key="result.videoId"  :MusicArticle="result"/>
+        <MusicArticle v-for="result in getSearchResult" :key="result.videoId" :MusicArticle="result"/>
     </div>
 </template>
 
@@ -16,5 +16,10 @@ export default {
             return this.$store.state.searchResults;
         }
     },
+    methods:{
+        RouteToSong(videoId){
+            this.$router.push(`/song/${videoId}`)
+        }
+    }
 }
 </script>

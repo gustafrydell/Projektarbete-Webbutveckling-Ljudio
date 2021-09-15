@@ -29,6 +29,7 @@ export default {
 
     methods: {
         Search(searchObject){
+            this.$store.commit('setBrowseId', 0)
             this.$store.dispatch("getSearchResultApi", searchObject);
             this.$router.push("/");
         }

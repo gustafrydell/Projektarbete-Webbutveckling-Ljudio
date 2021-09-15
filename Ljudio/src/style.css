@@ -40,7 +40,6 @@ h1, h2, input, p, h3{
 }
 .nav-div{
     margin-top: 3vh;
-    width: 100vw;
     display: flex;
     justify-content: center;
 }
@@ -101,6 +100,11 @@ nav{
     align-items: center;
 }
 
+.music-article:hover{
+    opacity: 80%;
+    cursor: pointer;
+}
+
 .play-button{
     font-size: 2vmax;
     color: #eb5e28;
@@ -138,4 +142,20 @@ nav{
     width: 70%;
     display: flex;
     align-items: center;
+}
+
+.current-song>p{
+    font-size: 1vmax;
+}
+.current-song>p:last-child{
+    margin-left: 10px;
+}
+
+.logo>img{
+    width: 15%;
+    cursor: pointer;
+}
+.logo{
+    display: flex;
+    justify-content: center;
 }
