@@ -26,7 +26,7 @@ p{
     font-weight: 500;
 }
 
-h1, h2, input, p, h3{
+h1, h2, input, p, h3, th, td{
     font-family: 'Roboto Slab', serif;
 }
 
@@ -38,6 +38,7 @@ h1, h2, input, p, h3{
 .search-button:active{
     background-color: #ccc5b9;
 }
+
 .nav-div{
     margin-top: 3vh;
     display: flex;
@@ -66,6 +67,18 @@ nav{
     height: 100%;
 }
 
+
+.song-article{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #fffcf2;
+    border-radius: 1vmax;
+    width: 70%;
+    height: 6vh;
+}
+
+
 .music-article{
     display: flex;
     align-items: center;
@@ -86,9 +99,15 @@ nav{
     height: 100%;
     display: flex;
 }
+
+/* .music-article>span>img{
+    width: 100%;
+} */
+
 .music-article>span:first-child>img{
     border-radius: 1vmax 0px 0px 1vmax;
     height: 100%;
+    width: 8vmax;
 }
 
 .music-article>span:last-child{
@@ -100,8 +119,12 @@ nav{
     align-items: center;
 }
 
-.music-article:hover{
-    opacity: 80%;
+.music-article>:nth-child(2):hover{
+    color: #eb5f28;
+    cursor: pointer;
+}
+.music-article>:nth-child(3):hover{
+    color: #eb5f28;
     cursor: pointer;
 }
 
@@ -137,6 +160,31 @@ nav{
     color: white;
 }
 
+.music-player>i{
+    color: #eb5e28;
+    align-self:baseline;
+    cursor: pointer;
+}
+
+.music-player-hidden{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: #252422c4;
+    width: 100vw;
+    height: 3vh;
+    position: fixed;
+    bottom: 0;
+    color: white;
+}
+
+.music-player-hidden>i{
+    color: #eb5e28;
+    cursor: pointer;
+    margin-right: 1.5vw;
+    padding-left: 1%;
+}
+
 .current-song{
     color: white;
     width: 70%;
@@ -158,4 +206,8 @@ nav{
 .logo{
     display: flex;
     justify-content: center;
+}
+
+th{
+    height: 1vh;
 }

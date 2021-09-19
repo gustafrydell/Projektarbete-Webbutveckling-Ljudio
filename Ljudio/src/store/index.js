@@ -12,7 +12,17 @@ const store = createStore({
         playState: 0,
         browseId: "",
         artist: [],
-        album: []
+        album: [],
+        song: {
+            name: "",
+            album:{
+                name: ""
+            },
+            artist:{
+                name: ""
+            }
+        },
+        togglePlayer: false
     },
     mutations:{
         setSearchResult(state, result){
@@ -32,6 +42,12 @@ const store = createStore({
         },
         setAlbumInfo(state, album){
             state.album = album;
+        },
+        setSongInfo(state, song){
+            state.song = song.content[0];
+        },
+        setPlayerToggle(state, bool){
+            state.togglePlayer = bool;
         }
     },
     actions:{
@@ -40,6 +56,12 @@ const store = createStore({
             let searchResult = await response.json();
             commit('setSearchResult', searchResult);
             console.log(searchResult)
+        },
+        async getSongInfoApi({commit}, videoId){
+            let response = await fetch(`https://yt-music-api.herokuapp.com/api/yt/songs/${videoId}`)
+            let result = await response.json();
+            commit('setSongInfo', result);
+            console.log(result)
         },
         async getArtistInfoApi({commit}, browseId){
             let response = await fetch(`https://yt-music-api.herokuapp.com/api/yt/artist/${browseId}`);

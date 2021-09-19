@@ -10,7 +10,7 @@ import MusicPlayer from './components/MusicPlayer.vue'
     </div>
     <Navbar/>
     <router-view class="main-view"></router-view>
-    <MusicPlayer v-if="getPlayState != 0 "/>
+    <MusicPlayer/>
   </div>
 </template>
 
@@ -19,11 +19,14 @@ export default {
   computed:{
     getPlayState(){
       return this.$store.state.playState;
+    },
+    getPlayerToggle(){
+      return this.$store.state.togglePlayer;
     }
   },
   methods:{
     goHome(){
-      this.$router.push('/');
+      this.$router.go('Home');
     }
   }
 }
