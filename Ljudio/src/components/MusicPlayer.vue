@@ -21,7 +21,6 @@
         <i @click="playerToggle()" class="fas fa-angle-up close-button fa-2x"></i>
     </div>
 </template>
-
 <script>
 
 export default {

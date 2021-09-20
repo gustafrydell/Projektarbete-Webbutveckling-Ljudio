@@ -29,8 +29,8 @@
                 <h2>Artist: {{MusicArticle.author}}</h2>
             </span>
             <span class="play-button">
-                <i @click="play(MusicArticle.videoId); setCurrentSong()" class="fas fa-play"></i>
-                <i @click="pause()" class="fas fa-pause"></i>
+                <i @click="play(MusicArticle.videoId); setCurrentSong(); playerToggle()" class="fas fa-play" v-if="!togglePlayPause"></i>
+                <i @click="pause()" class="fas fa-pause" v-if="togglePlayPause"></i>
             </span>
         </article>
 
@@ -122,7 +122,6 @@ export default {
             player.setVolume(volume);
         },
         setCurrentSong(){
-
             if(this.MusicArticle.type === 'song'){
                 let song = {
                     name: this.MusicArticle.name,

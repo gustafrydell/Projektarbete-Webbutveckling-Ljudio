@@ -69,6 +69,13 @@ export default {
                 this.$store.commit('setCurrentSong', song)
             }
         },
+        playerToggle(){
+            if(this.getPlayerDisplay){
+                this.$store.commit('setPlayerToggle', false)
+             }else if(!this.getPlayerDisplay){
+                this.$store.commit('setPlayerToggle', true)
+            }
+        },
     }
     
 }
