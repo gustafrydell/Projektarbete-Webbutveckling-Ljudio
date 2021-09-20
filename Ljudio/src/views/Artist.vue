@@ -6,7 +6,7 @@
     <h2>{{getArtist.name}}</h2>
     <p>{{getArtist.description}}</p>
     <hr>
-    <div> 
+    <div style="margin-bottom: 2%"> 
         <table>
             <tr>    
                 <th><h2>Songs</h2></th>
@@ -29,11 +29,7 @@
 </template>
 
 <script>
-import SongArticle from '../components/SongArticle.vue'
 export default {
-    components:{
-        SongArticle
-    },
     created(){
         this.fetchArtist();
     },

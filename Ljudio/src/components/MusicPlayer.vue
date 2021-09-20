@@ -6,16 +6,18 @@
         </span>
         <span class="play-button">
             <i @click="previousSong()" class="fas fa-step-backward"></i>
-            <i @click="play(getCurrentSong.videoId)" class="fas fa-play" v-if="!togglePlayPause"></i>
-            <i @click="pause()" class="fas fa-pause" v-if="togglePlayPause"></i>
+            <i @click="play(getCurrentSong.videoId)" class="fas fa-play" v-if="!getIsPlaying"></i>
+            <i @click="pause()" class="fas fa-pause" v-if="getIsPlaying"></i>
             <i @click="nextSong()" class="fas fa-step-forward"></i>
             <input @mousemove="setVolume(volume)" type="range" min="1" max="100" v-model="volume">
-            <input type="range" min="0" :max="getCurrentDuration" v-model="currentTime">
+            <i @click="mute()" class="fas fa-volume-up" v-if="!muted"></i>
+            <i @click="mute()" class="fas fa-volume-mute" v-if="muted"></i>
+            <!-- <input type="range" min="0" :max="getCurrentDuration" v-model="currentTime"> -->
         </span>
         <i @click="playerToggle()" class="fas fa-angle-down close-button fa-2x"></i>
     </div>
     <div v-if="!getPlayerDisplay" class="music-player-hidden">
-        <p>Maximize player  </p>
+        <p @click="playerToggle()" >Maximize player  </p>
         <i @click="playerToggle()" class="fas fa-angle-up close-button fa-2x"></i>
     </div>
 </template>
@@ -28,11 +30,11 @@ export default {
             volume: 50,
             isPlaying: false,
             togglePlayPause: false,
-            currentTime: 0
+            currentTime: 0,
+            muted: false
         }
     },
     created(){
-        // this.getCurrentTime();
     },
     computed:{
         getCurrentSong(){
@@ -43,8 +45,10 @@ export default {
         },
         getPlayerDisplay(){
             return this.$store.state.togglePlayer;
+        },
+        getIsPlaying(){
+            return this.$store.state.isPlaying;
         }
-
     },
 
     methods: {
@@ -56,9 +60,6 @@ export default {
                 this.$store.commit('setPlayerToggle', true)
             }
         },
-        // getCurrentTime(){
-        //     return this.currentTime = player.getCurrentTime() /2;
-        // },
         getCurrentDuration(){
             return player.getDuration()/2;
         },
@@ -68,10 +69,12 @@ export default {
                 this.isPlaying = true;
             }
             this.togglePlayPause = true;
+            this.$store.commit('setIsPlaying', true);
             player.playVideo();
         },
         pause(){
             player.pauseVideo();
+            this.$store.commit('setIsPlaying', false);
             this.togglePlayPause = false;
         },
         setVolume(volume){
@@ -82,6 +85,15 @@ export default {
         },
         previousSong(){
             player.previousVideo();
+        },
+        mute(){
+            if(this.muted){
+                player.unMute();
+                this.muted = false;
+            }else if(!this.muted){
+                player.mute();
+                this.muted = true;
+            }
         }
     },
 }

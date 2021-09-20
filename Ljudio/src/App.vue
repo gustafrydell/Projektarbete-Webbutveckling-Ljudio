@@ -6,7 +6,7 @@ import MusicPlayer from './components/MusicPlayer.vue'
 <template>
   <div>
     <div class="logo">
-      <img @click="goHome()" src="src/assets/gustisljudio.png" alt="">
+      <img @click="goHome()" src="/gustisljudio.png" alt="">
     </div>
     <Navbar/>
     <router-view class="main-view"></router-view>
@@ -26,7 +26,7 @@ export default {
   },
   methods:{
     goHome(){
-      this.$router.go('Home');
+      this.$router.push('/')
     }
   }
 }

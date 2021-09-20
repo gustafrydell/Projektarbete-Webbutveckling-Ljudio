@@ -1,13 +1,12 @@
 <template>
 <div>
     <h1>Song</h1>
-    <p>{{videoId}}</p>
     <p>Name: {{getSongInfo.name}}</p>
     <p>Artist: {{getSongInfo.artist.name}}</p>
     <p>Album: {{getSongInfo.album.name}}</p>
     <img :src="getSongInfo.thumbnails[1].url" alt="thumbnail">
     <span class="play-button">
-        <i @click="play(MusicArticle.videoId); setCurrentSong(); playerToggle()" class="fas fa-play" v-if="!togglePlayPause"></i>
+        <i @click="play(videoId); setCurrentSong(); playerToggle()" class="fas fa-play" v-if="!togglePlayPause"></i>
         <i @click="pause()" class="fas fa-pause" v-if="togglePlayPause"></i>
     </span>
 </div>
@@ -17,7 +16,9 @@
 export default {
     data(){
         return{
-            videoId: this.$route.params.videoId
+            videoId: this.$route.params.videoId,
+            isPlaying: false,
+            togglePlayPause: false
         }
     },
 
@@ -34,7 +35,40 @@ export default {
         }
     },
     methods:{
-
+        play(id){
+            if(!this.isPlaying){
+                player.loadVideoById(id);
+                this.isPlaying = true;
+                this.togglePlayPause = true;
+            }
+            player.playVideo();
+                let playState = player.getPlayerState();
+                this.togglePlayPause = true;
+                this.$store.commit('setPlayState', playState);
+        }, 
+        pause(){
+            player.pauseVideo();
+                let playState = player.getPlayerState();
+                this.togglePlayPause = false;
+                this.$store.commit('setPlayState', playState);
+        },
+        setCurrentSong(){
+            if(this.getSongInfo.type === 'song'){
+                let song = {
+                    name: this.getSongInfo.name,
+                    artist: this.getSongInfo.artist.name,
+                    videoId: this.getSongInfo.videoId
+                };
+                this.$store.commit('setCurrentSong', song)
+            }else if(this.getSongInfo.type === 'video'){
+                    let song = {
+                    name: this.getSongInfo.name,
+                    artist: this.getSongInfo.author,
+                    videoId: this.getSongInfo.videoId
+                };
+                this.$store.commit('setCurrentSong', song)
+            }
+        },
     }
     
 }

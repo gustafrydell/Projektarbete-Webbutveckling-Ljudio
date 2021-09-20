@@ -15,7 +15,6 @@
                 <i @click="play(MusicArticle.videoId); setCurrentSong(); playerToggle()" class="fas fa-play" v-if="!togglePlayPause"></i>
                 <i @click="pause()" class="fas fa-pause" v-if="togglePlayPause"></i>
             </span>
-           
         </article>
 
         <!------If search type is by video------>
@@ -50,6 +49,7 @@
                 <i class="fas fa-chevron-right"></i>
             </span>
         </article>
+
         <!------If search type is by artist------>
         <article @click="routeTo(MusicArticle.browseId, MusicArticle.type)" v-if="MusicArticle.type == 'artist' || MusicArticle.type == 'a'" :id="MusicArticle.browseId" class="music-article">
             <span>
@@ -85,6 +85,9 @@ export default {
     },
 
     computed:{
+        getIsPlaying(){
+            return this.$store.state.isPlaying;
+        }
     },
 
     methods: {
@@ -105,12 +108,14 @@ export default {
             player.playVideo();
             let playState = player.getPlayerState();
             this.togglePlayPause = true;
+            this.$store.commit('setIsPlaying', true);
             this.$store.commit('setPlayState', playState);
         },
         pause(){
             player.pauseVideo();
             let playState = player.getPlayerState();
             this.togglePlayPause = false;
+            this.$store.commit('setIsPlaying', false);
             this.$store.commit('setPlayState', playState);
         },
         setVolume(volume){

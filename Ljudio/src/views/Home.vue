@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin-bottom: 5%">
         <h1>Search results</h1>
         <MusicArticle v-for="result in getSearchResult" :key="result" :MusicArticle="result"/>
     </div>
@@ -22,4 +22,4 @@ export default {
         }
     }
 }
-</script>
+</script>5

@@ -22,7 +22,8 @@ const store = createStore({
                 name: ""
             }
         },
-        togglePlayer: false
+        togglePlayer: false,
+        isPlaying: false
     },
     mutations:{
         setSearchResult(state, result){
@@ -48,6 +49,9 @@ const store = createStore({
         },
         setPlayerToggle(state, bool){
             state.togglePlayer = bool;
+        },
+        setIsPlaying(state, bool){
+            state.isPlaying = bool;
         }
     },
     actions:{
