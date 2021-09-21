@@ -32,7 +32,6 @@ const store = createStore({
         },
         setCurrentSong(state, song){
             state.currentSong = song;
-            console.log("Song has been set");
         },
         setPlayState(state, playState){
             state.playState = playState;

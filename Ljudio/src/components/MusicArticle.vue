@@ -28,8 +28,7 @@
                 <h2>Artist: {{MusicArticle.author}}</h2>
             </span>
             <span class="play-button">
-                <i @click="play(MusicArticle.videoId); playerToggle()" class="fas fa-play" v-if="!togglePlayPause"></i>
-                <i @click="pause()" class="fas fa-pause" v-if="togglePlayPause"></i>
+                <i @click="play(MusicArticle.videoId); playerToggle()" class="fas fa-play"></i>
             </span>
         </article>
 

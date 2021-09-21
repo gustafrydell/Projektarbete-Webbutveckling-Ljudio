@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Song from '../views/Song.vue'
 import Album from '../views/Album.vue'
 import Artist from '../views/Artist.vue'
+import Search from '../views/Search.vue'
 
 const routes = [{
     path: '/',
@@ -13,6 +14,11 @@ const routes = [{
     path: '/song/:videoId',
     name: 'Song',
     component: Song
+},
+{
+    path: '/search',
+    name: 'Search',
+    component: Search
 },
 // { requirement removed from assignment
 //     path: '/album/:browseId',

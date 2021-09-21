@@ -37,7 +37,7 @@ export default {
                 this.$store.commit('setBrowseId', 0)
                 await this.$store.dispatch("getSearchResultApi", this.searchObject)
                 this.setPlayList();
-                this.$router.push('/');
+                this.$router.push('/search');
             }
         },
 

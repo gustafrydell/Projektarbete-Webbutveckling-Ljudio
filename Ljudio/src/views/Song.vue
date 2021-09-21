@@ -6,8 +6,7 @@
     <p>Album: {{getSongInfo.album.name}}</p>
     <img :src="getSongInfo.thumbnails[1].url" alt="thumbnail">
     <span class="play-button">
-        <i @click="play(videoId); setCurrentSong(); playerToggle()" class="fas fa-play" v-if="!togglePlayPause"></i>
-        <i @click="pause()" class="fas fa-pause" v-if="togglePlayPause"></i>
+        <i @click="play(videoId); setCurrentSong(); playerToggle()" class="fas fa-play"></i>
     </span>
 </div>
 </template>
