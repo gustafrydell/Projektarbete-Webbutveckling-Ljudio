@@ -1,7 +1,11 @@
-# Vue 3 + Vite
+# Ljudio
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Ljudio is a schoolproject where the assignment is to make a musicplayer. Where you can search for songs, artists etc. To play various music. With basic "musicplayer" functionality.
 
-## Recommended IDE Setup
+# How to start the project
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+Make sure you stand in the right folder by typing: cd ljudio, in the terminal.
+Then write: npm run dev in the terminal to start up the server.
+Navigate to the correct IP-adress shown in the terminal.
+
+
