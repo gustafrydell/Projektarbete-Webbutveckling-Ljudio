@@ -12,8 +12,7 @@
                 <h2 @click="routeTo(MusicArticle.artist.browseId, 'artist')">Artist: {{MusicArticle.artist.name}}</h2>
             </span>
             <span class="play-button">
-                <i @click="play(MusicArticle.videoId); playerToggle()" class="fas fa-play" v-if="!togglePlayPause"></i>
-                <i @click="pause()" class="fas fa-pause" v-if="togglePlayPause"></i>
+                <i @click="play(MusicArticle.videoId); playerToggle()" class="fas fa-play"></i>
             </span>
         </article>
 
@@ -76,7 +75,6 @@ export default {
         return{
             volume: 50,
             isPlaying: false,
-            togglePlayPause: false,
         }
     },
 
@@ -102,19 +100,17 @@ export default {
             if(!this.isPlaying){
                 player.loadVideoById(id);
                 this.isPlaying = true;
-                this.togglePlayPause = true;
+
             }
             this.setCurrentSong();
             player.playVideo();
             let playState = player.getPlayerState();
-            this.togglePlayPause = true;
             this.$store.commit('setIsPlaying', true);
             this.$store.commit('setPlayState', playState);
         },
         pause(){
             player.pauseVideo();
             let playState = player.getPlayerState();
-            this.togglePlayPause = false;
             this.$store.commit('setIsPlaying', false);
             this.$store.commit('setPlayState', playState);
         },

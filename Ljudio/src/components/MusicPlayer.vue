@@ -9,7 +9,7 @@
             <i @click="play(getCurrentSong.videoId)" class="fas fa-play" v-if="!getIsPlaying"></i>
             <i @click="pause()" class="fas fa-pause" v-if="getIsPlaying"></i>
             <i @click="nextSong()" class="fas fa-step-forward"></i>
-            <input @mousemove="setVolume(volume)" type="range" min="1" max="100" v-model="volume">
+            <input @change="setVolume(volume)" @mousemove="setVolume(volume)" type="range" min="1" max="100" v-model="volume">
             <i @click="mute()" class="fas fa-volume-up" v-if="!muted"></i>
             <i @click="mute()" class="fas fa-volume-mute" v-if="muted"></i>
             <!-- <input type="range" min="0" :max="getCurrentDuration" v-model="currentTime"> -->
@@ -91,13 +91,11 @@ export default {
                     if(i < playList.length - 1){
                         nextSong = playList[i + 1].videoId;
                         let currentSong = {name: playList[i + 1].name, artist: playList[i + 1].artist.name, videoId: playList[i + 1].videoId}
-                        console.log(currentSong);
                         this.setCurrentSong(currentSong);
                         break
                     }else{
                         nextSong = playList[0].videoId;
                         let currentSong = {name: playList[0].name, artist: playList[0].artist.name, videoId: playList[0].videoId}
-                        console.log(currentSong);
                         this.setCurrentSong(currentSong);
                         break
                     }
@@ -115,13 +113,11 @@ export default {
                     if(i > 0){
                         nextSong = playList[i - 1].videoId;
                         let currentSong = {name: playList[i - 1].name, artist: playList[i - 1].artist.name, videoId: playList[i - 1].videoId}
-                        console.log(currentSong);
                         this.setCurrentSong(currentSong);
                         break;
                     }else{
                         nextSong = playList[playList.length - 1].videoId;
                         let currentSong = {name: playList[playList.length - 1].name, artist: playList[playList.length - 1].artist.name, videoId: playList[playList.length - 1].videoId}
-                        console.log(currentSong);
                         this.setCurrentSong(currentSong);
                         break;
                     }

@@ -1,7 +1,7 @@
 <template>
     <div class="nav-div">
         <nav>
-            <input @keyup.enter="Search()" class="searchbar" type="text" placeholder="Write a song to search for..." v-model="searchObject.searchString" required>
+            <input @keyup.enter="Search()" class="searchbar" type="text" :placeholder="placeholderText" v-model="searchObject.searchString" required>
             <select v-model="searchObject.searchType">
                 <option :value="'search'" >All</option>
                 <option :value="'songs'">Song</option>
@@ -20,7 +20,8 @@ export default {
             searchObject:{
                 searchString: "",
                 searchType: "search",
-            }
+            },
+            placeholderText: "Write a song to search for..."
         }
     },
     computed:{
@@ -30,11 +31,16 @@ export default {
     },
     methods: {
         async Search(){
-            this.$store.commit('setBrowseId', 0)
-            await this.$store.dispatch("getSearchResultApi", this.searchObject)
-            this.setPlayList();
-  
+            if(this.searchObject.searchString == ""){
+                this.placeholderText = "You need to input a valid search parameter!"
+            }else{
+                this.$store.commit('setBrowseId', 0)
+                await this.$store.dispatch("getSearchResultApi", this.searchObject)
+                this.setPlayList();
+                this.$router.push('/');
+            }
         },
+
         setPlayList(){
             let newPlayList = [];
             let searchResult = this.getSearchResult;
@@ -42,7 +48,6 @@ export default {
                 newPlayList.push(searchResult[i])
             }
             this.$store.commit('setPlayList', newPlayList);
-            console.log(this.$store.state.playList)
         }
     },
 }

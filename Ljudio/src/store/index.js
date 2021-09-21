@@ -67,7 +67,6 @@ const store = createStore({
             if(searchObject.type == 'song'){
                 commit('setPlayList', searchResult)
             }
-            //console.log(searchResult)
         },
         async getSongInfoApi({commit}, videoId){
             let response = await fetch(`https://yt-music-api.herokuapp.com/api/yt/songs/${videoId}`)
