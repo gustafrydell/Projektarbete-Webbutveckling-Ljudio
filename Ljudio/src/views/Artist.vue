@@ -2,7 +2,7 @@
 <div>
     <h1>Artist</h1>
     <hr>
-    <img :src="getArtist.thumbnails[1].url" alt="">
+    <img class="artist-img" :src="getArtist.thumbnails[1].url" alt="">
     <h2>{{getArtist.name}}</h2>
     <p>{{getArtist.description}}</p>
     <hr>

@@ -1,18 +1,18 @@
 <template>
     <div class="spacing-bottom">
         <!------If search type is by song------>
-        <article @click="setSongInfo(MusicArticle.videoId)" v-if="MusicArticle.type == 'song'" :id="MusicArticle.videoId" class="music-article">
+        <article v-if="MusicArticle.type == 'song'" :id="MusicArticle.videoId" class="music-article">
             <span>
                 <img :src="MusicArticle.thumbnails[1].url" alt="No thumbnail">
             </span>
             <span>
-                <h2 @click="routeTo(MusicArticle.videoId, 'song')">Song: {{MusicArticle.name}}</h2>
+                <h2 @click="routeTo(MusicArticle.videoId, 'song'); setSongInfo(MusicArticle.videoId)">Song: {{MusicArticle.name}}</h2>
             </span>
             <span>
                 <h2 @click="routeTo(MusicArticle.artist.browseId, 'artist')">Artist: {{MusicArticle.artist.name}}</h2>
             </span>
             <span class="play-button">
-                <i @click="play(MusicArticle.videoId); setCurrentSong(); playerToggle()" class="fas fa-play" v-if="!togglePlayPause"></i>
+                <i @click="play(MusicArticle.videoId); playerToggle()" class="fas fa-play" v-if="!togglePlayPause"></i>
                 <i @click="pause()" class="fas fa-pause" v-if="togglePlayPause"></i>
             </span>
         </article>
@@ -29,13 +29,13 @@
                 <h2>Artist: {{MusicArticle.author}}</h2>
             </span>
             <span class="play-button">
-                <i @click="play(MusicArticle.videoId); setCurrentSong(); playerToggle()" class="fas fa-play" v-if="!togglePlayPause"></i>
+                <i @click="play(MusicArticle.videoId); playerToggle()" class="fas fa-play" v-if="!togglePlayPause"></i>
                 <i @click="pause()" class="fas fa-pause" v-if="togglePlayPause"></i>
             </span>
         </article>
 
-        <!------If search type is by album------>
-        <article @click="routeTo(MusicArticle.browseId, MusicArticle.type)" v-if="MusicArticle.type == 'album'" :id="MusicArticle.browseId" class="music-article">
+        <!------If search type is by album:  requirement removed from assignment------>
+        <!-- <article @click="routeTo(MusicArticle.browseId, MusicArticle.type)" v-if="MusicArticle.type == 'album'" :id="MusicArticle.browseId" class="music-article">
             <span>
                 <img :src="MusicArticle.thumbnails[1].url" alt="No thumbnail">
             </span>
@@ -48,7 +48,7 @@
             <span class="play-button">
                 <i class="fas fa-chevron-right"></i>
             </span>
-        </article>
+        </article> -->
 
         <!------If search type is by artist------>
         <article @click="routeTo(MusicArticle.browseId, MusicArticle.type)" v-if="MusicArticle.type == 'artist' || MusicArticle.type == 'a'" :id="MusicArticle.browseId" class="music-article">
@@ -76,12 +76,11 @@ export default {
         return{
             volume: 50,
             isPlaying: false,
-            togglePlayPause: false
+            togglePlayPause: false,
         }
     },
 
     created(){
-        console.log(this.MusicArticle);
     },
 
     computed:{
@@ -105,6 +104,7 @@ export default {
                 this.isPlaying = true;
                 this.togglePlayPause = true;
             }
+            this.setCurrentSong();
             player.playVideo();
             let playState = player.getPlayerState();
             this.togglePlayPause = true;
@@ -118,6 +118,7 @@ export default {
             this.$store.commit('setIsPlaying', false);
             this.$store.commit('setPlayState', playState);
         },
+        
         setVolume(volume){
             player.setVolume(volume);
         },
@@ -126,7 +127,7 @@ export default {
                 let song = {
                     name: this.MusicArticle.name,
                     artist: this.MusicArticle.artist.name,
-                    videoId: this.MusicArticle.videoId
+                    videoId: this.MusicArticle.videoId,
                 };
                 this.$store.commit('setCurrentSong', song)
             }else if(this.MusicArticle.type === 'video'){
@@ -144,7 +145,7 @@ export default {
         },
         setSongInfo(videoId){
             this.$store.dispatch('getSongInfoApi', videoId);
-        }
+        },
     },
 }
 </script>

@@ -14,11 +14,11 @@ const routes = [{
     name: 'Song',
     component: Song
 },
-{
-    path: '/album/:browseId',
-    name: 'Album',
-    component: Album
-},
+// { requirement removed from assignment
+//     path: '/album/:browseId',
+//     name: 'Album',
+//     component: Album
+// },
 {
     path: '/artist/:browseId',
     name: 'Artist',

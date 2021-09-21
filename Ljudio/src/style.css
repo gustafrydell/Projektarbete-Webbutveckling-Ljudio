@@ -197,7 +197,7 @@ nav{
 }
 
 .current-song>p{
-    font-size: 1vmax;
+    font-size: 2vmax;
 }
 .current-song>p:last-child{
     margin-left: 10px;
@@ -215,3 +215,34 @@ nav{
 th{
     height: 1vh;
 }
+
+
+@media screen and (max-width: 850px) {
+    .artist-img{
+        width: 100%;
+    }
+
+    .search-button{
+        background-color: #eb5e28;
+        width: 10vw;
+        height: 3vh;
+        margin-left: 2%;
+        border: 1px solid #ccc5b9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 3vw;
+        min-height: 1vh;
+    }
+    p{
+        font-size: 3vw;
+        font-weight: 500;
+    }
+    .music-player>.current-song>p{
+        font-size: 3vw;
+    }
+    .music-article h2{
+        font-size: 2vmax;
+    }
+
+  }

@@ -22,15 +22,16 @@
     </div>
 </template>
 <script>
-
 export default {
+    components:{
+    },
     data() {
         return {
             volume: 50,
             isPlaying: false,
             togglePlayPause: false,
             currentTime: 0,
-            muted: false
+            muted: false,
         }
     },
     created(){
@@ -47,6 +48,9 @@ export default {
         },
         getIsPlaying(){
             return this.$store.state.isPlaying;
+        },
+        getPlayList(){
+            return this.$store.state.playList;
         }
     },
 
@@ -80,10 +84,51 @@ export default {
             player.setVolume(volume);
         },
         nextSong(){
-            player.nextVideo();
+            let playList = this.getPlayList;
+            let nextSong = 0;
+            for (let i = 0; i < playList.length; i++) {
+                if(playList[i].videoId === this.getCurrentSong.videoId){
+                    if(i < playList.length - 1){
+                        nextSong = playList[i + 1].videoId;
+                        let currentSong = {name: playList[i + 1].name, artist: playList[i + 1].artist.name, videoId: playList[i + 1].videoId}
+                        console.log(currentSong);
+                        this.setCurrentSong(currentSong);
+                        break
+                    }else{
+                        nextSong = playList[0].videoId;
+                        let currentSong = {name: playList[0].name, artist: playList[0].artist.name, videoId: playList[0].videoId}
+                        console.log(currentSong);
+                        this.setCurrentSong(currentSong);
+                        break
+                    }
+                }
+            }
+            player.loadVideoById(nextSong);
+            this.isPlaying = true;
+
         },
         previousSong(){
-            player.previousVideo();
+            let playList = this.getPlayList;
+            let nextSong = 0;
+            for (let i = 0; i < playList.length; i++) {
+                if(playList[i].videoId === this.getCurrentSong.videoId){
+                    if(i > 0){
+                        nextSong = playList[i - 1].videoId;
+                        let currentSong = {name: playList[i - 1].name, artist: playList[i - 1].artist.name, videoId: playList[i - 1].videoId}
+                        console.log(currentSong);
+                        this.setCurrentSong(currentSong);
+                        break;
+                    }else{
+                        nextSong = playList[playList.length - 1].videoId;
+                        let currentSong = {name: playList[playList.length - 1].name, artist: playList[playList.length - 1].artist.name, videoId: playList[playList.length - 1].videoId}
+                        console.log(currentSong);
+                        this.setCurrentSong(currentSong);
+                        break;
+                    }
+                }
+            }
+            player.loadVideoById(nextSong);
+            this.isPlaying = true;
         },
         mute(){
             if(this.muted){
@@ -93,6 +138,9 @@ export default {
                 player.mute();
                 this.muted = true;
             }
+        },
+        setCurrentSong(song){
+            this.$store.commit('setCurrentSong', song)
         }
     },
 }

@@ -23,7 +23,8 @@ const store = createStore({
             }
         },
         togglePlayer: false,
-        isPlaying: false
+        isPlaying: false,
+        playList: []
     },
     mutations:{
         setSearchResult(state, result){
@@ -31,6 +32,7 @@ const store = createStore({
         },
         setCurrentSong(state, song){
             state.currentSong = song;
+            console.log("Song has been set");
         },
         setPlayState(state, playState){
             state.playState = playState;
@@ -52,6 +54,9 @@ const store = createStore({
         },
         setIsPlaying(state, bool){
             state.isPlaying = bool;
+        },
+        setPlayList(state, playList){
+            state.playList = playList;
         }
     },
     actions:{
@@ -59,7 +64,10 @@ const store = createStore({
             let response = await fetch(`https://yt-music-api.herokuapp.com/api/yt/${searchObject.searchType}/${searchObject.searchString}`);
             let searchResult = await response.json();
             commit('setSearchResult', searchResult);
-            console.log(searchResult)
+            if(searchObject.type == 'song'){
+                commit('setPlayList', searchResult)
+            }
+            //console.log(searchResult)
         },
         async getSongInfoApi({commit}, videoId){
             let response = await fetch(`https://yt-music-api.herokuapp.com/api/yt/songs/${videoId}`)

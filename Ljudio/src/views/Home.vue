@@ -11,10 +11,11 @@ export default {
     components:{
         MusicArticle
     },
+
     computed:{
         getSearchResult(){
             return this.$store.state.searchResults;
-        }
+        },
     },
     methods:{
         RouteToSong(videoId){

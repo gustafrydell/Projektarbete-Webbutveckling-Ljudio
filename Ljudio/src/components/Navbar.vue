@@ -5,7 +5,7 @@
             <select v-model="searchObject.searchType">
                 <option :value="'search'" >All</option>
                 <option :value="'songs'">Song</option>
-                <option :value="'albums'">Album</option>
+                <!-- <option :value="'albums'">Album</option> requirement removed from assignment -->
                 <option :value="'artists'">Artist</option>
             </select>
             <span  @click="Search()" class="search-button"><p>Search</p></span>
@@ -19,19 +19,30 @@ export default {
         return {
             searchObject:{
                 searchString: "",
-                searchType: "search"
+                searchType: "search",
             }
         }
     },
-
     computed:{
+        getSearchResult(){
+            return this.$store.state.searchResults;
+        }
     },
-
     methods: {
-        Search(){
+        async Search(){
             this.$store.commit('setBrowseId', 0)
-            this.$store.dispatch("getSearchResultApi", this.searchObject)
-            .then(this.$router.push("/"));
+            await this.$store.dispatch("getSearchResultApi", this.searchObject)
+            this.setPlayList();
+  
+        },
+        setPlayList(){
+            let newPlayList = [];
+            let searchResult = this.getSearchResult;
+            for (let i = 0; i < searchResult.length; i++) {
+                newPlayList.push(searchResult[i])
+            }
+            this.$store.commit('setPlayList', newPlayList);
+            console.log(this.$store.state.playList)
         }
     },
 }
