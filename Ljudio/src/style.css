@@ -216,6 +216,12 @@ th{
     height: 1vh;
 }
 
+.time-duration{
+    align-self: flex-end;
+    position: fixed;
+    left: 0;
+    width: 50%;
+}
 
 @media screen and (max-width: 850px) {
     .artist-img{

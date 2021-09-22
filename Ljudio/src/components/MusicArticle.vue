@@ -77,9 +77,6 @@ export default {
         }
     },
 
-    created(){
-    },
-
     computed:{
         getIsPlaying(){
             return this.$store.state.isPlaying;
@@ -94,24 +91,15 @@ export default {
                 this.$store.commit('setPlayerToggle', true)
             }
         },
-
         play(id){
-            if(!this.isPlaying){
-                player.loadVideoById(id);
-                this.isPlaying = true;
-
-            }
-            this.setCurrentSong();
-            player.playVideo();
-            let playState = player.getPlayerState();
+            player.loadVideoById(id);
             this.$store.commit('setIsPlaying', true);
-            this.$store.commit('setPlayState', playState);
+            this.$store.commit('setTogglePlayPause', true)
+            this.setCurrentSong();
         },
         pause(){
             player.pauseVideo();
-            let playState = player.getPlayerState();
-            this.$store.commit('setIsPlaying', false);
-            this.$store.commit('setPlayState', playState);
+            this.$store.commit('setTogglePlayPause', false)
         },
         
         setVolume(volume){

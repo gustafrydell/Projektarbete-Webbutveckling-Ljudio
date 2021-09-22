@@ -1,4 +1,6 @@
 <template>
+<div>
+
     <div v-if="getPlayerDisplay" class="music-player">
         <span class="current-song">
             <p>Now playing: </p>
@@ -6,35 +8,44 @@
         </span>
         <span class="play-button">
             <i @click="previousSong()" class="fas fa-step-backward"></i>
-            <i @click="play(getCurrentSong.videoId)" class="fas fa-play" v-if="!getIsPlaying"></i>
-            <i @click="pause()" class="fas fa-pause" v-if="getIsPlaying"></i>
+            <i @click="play(getCurrentSong.videoId)" class="fas fa-play" v-if="!getTogglePlayPause"></i>
+            <i @click="pause()" class="fas fa-pause" v-if="getTogglePlayPause"></i>
             <i @click="nextSong()" class="fas fa-step-forward"></i>
             <input @change="setVolume(volume)" @mousemove="setVolume(volume)" type="range" min="1" max="100" v-model="volume">
             <i @click="mute()" class="fas fa-volume-up" v-if="!muted"></i>
             <i @click="mute()" class="fas fa-volume-mute" v-if="muted"></i>
-            <!-- <input type="range" min="0" :max="getCurrentDuration" v-model="currentTime"> -->
         </span>
         <i @click="playerToggle()" class="fas fa-angle-down close-button fa-2x"></i>
+        <input class="time-duration" type="range" min="0" :max="duration" v-model="currentTime" step="0.01">
     </div>
+</div>
     <div v-if="!getPlayerDisplay" class="music-player-hidden">
         <p @click="playerToggle()" >Maximize player  </p>
         <i @click="playerToggle()" class="fas fa-angle-up close-button fa-2x"></i>
     </div>
+    
 </template>
 <script>
 export default {
-    components:{
-    },
     data() {
         return {
             volume: 50,
-            isPlaying: false,
-            togglePlayPause: false,
             currentTime: 0,
             muted: false,
+            duration: 0
         }
     },
-    created(){
+    mounted: function () {
+        window.setInterval(() => {
+            if(this.getIsPlaying){
+                this.setCurrentTime();
+                this.setCurrentDuration();
+                console.log(this.duration)
+                console.log(this.currentTime);
+                console.log(this.getIsPlaying);
+                console.log(this.getTogglePlayPause);
+            }
+        }, 1000)
     },
     computed:{
         getCurrentSong(){
@@ -51,7 +62,11 @@ export default {
         },
         getPlayList(){
             return this.$store.state.playList;
+        },
+        getTogglePlayPause(){
+            return this.$store.state.togglePlayPause;
         }
+
     },
 
     methods: {
@@ -63,22 +78,26 @@ export default {
                 this.$store.commit('setPlayerToggle', true)
             }
         },
-        getCurrentDuration(){
-            return player.getDuration()/2;
+        setCurrentDuration(){
+            this.duration = player.getDuration();
+        },
+
+        setCurrentTime(){
+            this.currentTime = player.getCurrentTime();
         },
         play(id){
-            if(!this.isPlaying){
+            if(!this.getIsPlaying){
                 player.loadVideoById(id);
-                this.isPlaying = true;
+                this.$store.commit('setIsPlaying', true);
+                this.$store.commit('setTogglePlayPause', true)
             }
-            this.togglePlayPause = true;
             this.$store.commit('setIsPlaying', true);
+            this.$store.commit('setTogglePlayPause', true);
             player.playVideo();
         },
         pause(){
+            this.$store.commit('setTogglePlayPause', false);
             player.pauseVideo();
-            this.$store.commit('setIsPlaying', false);
-            this.togglePlayPause = false;
         },
         setVolume(volume){
             player.setVolume(volume);
@@ -102,8 +121,7 @@ export default {
                 }
             }
             player.loadVideoById(nextSong);
-            this.isPlaying = true;
-
+            this.$store.commit('setIsPlaying', true);
         },
         previousSong(){
             let playList = this.getPlayList;
@@ -124,7 +142,7 @@ export default {
                 }
             }
             player.loadVideoById(nextSong);
-            this.isPlaying = true;
+            this.$store.commit('setIsPlaying', true);
         },
         mute(){
             if(this.muted){

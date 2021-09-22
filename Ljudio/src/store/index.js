@@ -24,6 +24,7 @@ const store = createStore({
         },
         togglePlayer: false,
         isPlaying: false,
+        togglePlayPause: false,
         playList: []
     },
     mutations:{
@@ -56,6 +57,9 @@ const store = createStore({
         },
         setPlayList(state, playList){
             state.playList = playList;
+        },
+        setTogglePlayPause(state, bool){
+            state.togglePlayPause = bool;
         }
     },
     actions:{
