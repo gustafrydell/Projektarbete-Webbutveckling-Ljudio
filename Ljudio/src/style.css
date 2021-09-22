@@ -151,7 +151,7 @@ nav{
     justify-content: space-around;
     background-color: #252422c4;
     width: 100vw;
-    height: 10vh;
+    height: 12vh;
     position: fixed;
     bottom: 0;
 }
@@ -238,6 +238,28 @@ th{
     box-shadow: -80px 0 0 80px #43e5f7;
   } */
 
+  .volume-slider {
+    overflow: hidden;
+    -webkit-appearance: none;
+    background-color: #9494948a;
+  }
+  
+  .volume-slider::-webkit-slider-runnable-track {
+    height: 10px;
+    -webkit-appearance: none;
+    color: #eb5f2893;
+    margin-top: -1px;
+  }
+  
+  .volume-slider::-webkit-slider-thumb {
+    width: 10px;
+    -webkit-appearance: none;
+    
+    cursor: pointer;
+    background: #eb5e28;
+    box-shadow: -100vw 0 0 100vw #eb5f287a;
+  }
+
   .time-duration {
     align-self: flex-end;
     position: fixed;
@@ -246,6 +268,7 @@ th{
     overflow: hidden;
     -webkit-appearance: none;
     background-color: #9494948a;
+    margin-bottom: 0.5%;
   }
   
   .time-duration::-webkit-slider-runnable-track {

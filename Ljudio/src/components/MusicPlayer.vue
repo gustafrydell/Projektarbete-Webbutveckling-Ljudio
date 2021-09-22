@@ -11,7 +11,7 @@
             <i @click="play(getCurrentSong.videoId)" class="fas fa-play" v-if="!getTogglePlayPause"></i>
             <i @click="pause()" class="fas fa-pause" v-if="getTogglePlayPause"></i>
             <i @click="nextSong()" class="fas fa-step-forward"></i>
-            <input @change="setVolume(volume)" @mousemove="setVolume(volume)" type="range" min="1" max="100" v-model="volume">
+            <input class="volume-slider" @change="setVolume(volume)" @mousemove="setVolume(volume)" type="range" min="1" max="100" v-model="volume">
             <i @click="mute()" class="fas fa-volume-up" v-if="!muted"></i>
             <i @click="mute()" class="fas fa-volume-mute" v-if="muted"></i>
         </span>
