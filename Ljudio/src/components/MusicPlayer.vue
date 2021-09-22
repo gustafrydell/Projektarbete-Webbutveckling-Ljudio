@@ -16,7 +16,7 @@
             <i @click="mute()" class="fas fa-volume-mute" v-if="muted"></i>
         </span>
         <i @click="playerToggle()" class="fas fa-angle-down close-button fa-2x"></i>
-        <input class="time-duration" type="range" min="0" :max="duration" v-model="currentTime" step="0.01">
+        <input @change="seekTo(currentTime)" class="time-duration" type="range" min="0" :max="duration" v-model="currentTime" step="0.01">
     </div>
 </div>
     <div v-if="!getPlayerDisplay" class="music-player-hidden">
@@ -80,6 +80,9 @@ export default {
         },
         setCurrentDuration(){
             this.duration = player.getDuration();
+        },
+        seekTo(time){
+            player.seekTo(time);
         },
 
         setCurrentTime(){

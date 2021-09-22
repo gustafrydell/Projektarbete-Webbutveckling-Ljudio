@@ -219,8 +219,8 @@ th{
 .time-duration{
     align-self: flex-end;
     position: fixed;
-    left: 0;
-    width: 50%;
+    left: auto;
+    width:95%;
 }
 
 @media screen and (max-width: 850px) {
