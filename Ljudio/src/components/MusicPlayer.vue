@@ -125,6 +125,7 @@ export default {
             }
             player.loadVideoById(nextSong);
             this.$store.commit('setIsPlaying', true);
+            this.$store.commit('setTogglePlayPause', true)
         },
         previousSong(){
             let playList = this.getPlayList;
@@ -146,6 +147,7 @@ export default {
             }
             player.loadVideoById(nextSong);
             this.$store.commit('setIsPlaying', true);
+            this.$store.commit('setTogglePlayPause', true)
         },
         mute(){
             if(this.muted){
