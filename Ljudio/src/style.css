@@ -259,7 +259,7 @@ th{
     width: 10px;
     -webkit-appearance: none;
     height: 10px;
-    cursor: ew-resize;
+    cursor: pointer;
     background: #eb5e28;
     box-shadow: -100vw 0 0 100vw #eb5f287a;
   }
