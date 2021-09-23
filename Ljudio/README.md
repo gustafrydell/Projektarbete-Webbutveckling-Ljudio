@@ -4,8 +4,9 @@ Ljudio is a schoolproject where the assignment is to make a musicplayer. Where y
 
 # How to start the project
 
-Make sure you stand in the right folder by typing: cd ljudio, in the terminal.
-Then write: npm run dev in the terminal to start up the server.
-Navigate to the correct IP-adress shown in the terminal.
+* Clone the repo from github
+* Open project in VS Code and make sure you stand in the right folder by typing: cd Ljudio, in the terminal.
+* Run npm install in terminal
+* Run npm run dev in terminal to start server, navigate to the right ip-address shown in the terminal.
 
 
