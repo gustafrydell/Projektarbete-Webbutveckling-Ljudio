@@ -34,22 +34,15 @@ export default {
         }
     },
     methods:{
-        play(id){
-            if(!this.isPlaying){
-                player.loadVideoById(id);
-                this.isPlaying = true;
-                this.togglePlayPause = true;
-            }
-            player.playVideo();
-                let playState = player.getPlayerState();
-                this.togglePlayPause = true;
-                this.$store.commit('setPlayState', playState);
-        }, 
-        pause(){
+         play(id){
+            player.loadVideoById(id);
+            this.$store.commit('setIsPlaying', true);
+            this.$store.commit('setTogglePlayPause', true)
+            this.setCurrentSong();
+        },
+         pause(){
+            this.$store.commit('setTogglePlayPause', false);
             player.pauseVideo();
-                let playState = player.getPlayerState();
-                this.togglePlayPause = false;
-                this.$store.commit('setPlayState', playState);
         },
         setCurrentSong(){
             if(this.getSongInfo.type === 'song'){
