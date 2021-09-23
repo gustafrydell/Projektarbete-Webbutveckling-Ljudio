@@ -21,10 +21,6 @@ export default {
         }
     },
 
-    created(){
-        console.log(this.SongArticle);
-    },
-
     methods: {
         play(id){
             if(!this.isPlaying){

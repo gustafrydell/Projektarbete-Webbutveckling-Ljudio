@@ -21,7 +21,7 @@ export default {
                 searchString: "",
                 searchType: "search",
             },
-            placeholderText: "Write a song to search for..."
+            placeholderText: "Search..."
         }
     },
     computed:{

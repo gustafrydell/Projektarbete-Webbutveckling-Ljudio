@@ -320,5 +320,12 @@ th{
     .music-article h2{
         font-size: 2vmax;
     }
+  }
 
+  @media screen and (max-width: 600px) {
+    .logo>img{
+        width: 40%;
+        cursor: pointer;
+    }
+      
   }

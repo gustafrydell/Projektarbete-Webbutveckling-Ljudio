@@ -75,7 +75,6 @@ const store = createStore({
             let response = await fetch(`https://yt-music-api.herokuapp.com/api/yt/songs/${videoId}`)
             let result = await response.json();
             commit('setSongInfo', result);
-            console.log(result)
         },
         async getArtistInfoApi({commit}, browseId){
             let response = await fetch(`https://yt-music-api.herokuapp.com/api/yt/artist/${browseId}`);

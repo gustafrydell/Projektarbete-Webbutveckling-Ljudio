@@ -43,10 +43,6 @@ export default {
                 if(player.getPlayerState() == 0){
                     this.nextSong();
                 }
-                // console.log(this.duration)
-                // console.log(this.currentTime);
-                // console.log(this.getIsPlaying);
-                // console.log(this.getTogglePlayPause);
             }
         }, 1000)
     },
