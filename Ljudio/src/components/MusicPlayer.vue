@@ -40,6 +40,9 @@ export default {
             if(this.getIsPlaying){
                 this.setCurrentTime();
                 this.setCurrentDuration();
+                if(player.getPlayerState() == 0){
+                    this.nextSong();
+                }
                 // console.log(this.duration)
                 // console.log(this.currentTime);
                 // console.log(this.getIsPlaying);
@@ -50,9 +53,6 @@ export default {
     computed:{
         getCurrentSong(){
             return this.$store.state.currentSong;
-        },
-        getPlayState(){
-            return this.$store.state.playState;
         },
         getPlayerDisplay(){
             return this.$store.state.togglePlayer;
@@ -65,8 +65,7 @@ export default {
         },
         getTogglePlayPause(){
             return this.$store.state.togglePlayPause;
-        }
-
+        },
     },
 
     methods: {
