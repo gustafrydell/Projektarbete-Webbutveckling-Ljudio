@@ -287,6 +287,12 @@ th{
     box-shadow: -100vw 0 0 100vw #eb5f287a;
   }
 
+  .play-button-song{
+      display: flex;
+      position: fixed;
+      align-self: center;
+  }
+
 @media screen and (max-width: 850px) {
     .artist-img{
         width: 100%;

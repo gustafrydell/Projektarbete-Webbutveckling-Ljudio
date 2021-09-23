@@ -40,10 +40,10 @@ export default {
             if(this.getIsPlaying){
                 this.setCurrentTime();
                 this.setCurrentDuration();
-                console.log(this.duration)
-                console.log(this.currentTime);
-                console.log(this.getIsPlaying);
-                console.log(this.getTogglePlayPause);
+                // console.log(this.duration)
+                // console.log(this.currentTime);
+                // console.log(this.getIsPlaying);
+                // console.log(this.getTogglePlayPause);
             }
         }, 1000)
     },

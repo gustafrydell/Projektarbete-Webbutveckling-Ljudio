@@ -1,13 +1,13 @@
 <template>
 <div>
     <h1>Song</h1>
-    <p>Name: {{getSongInfo.name}}</p>
-    <p>Artist: {{getSongInfo.artist.name}}</p>
-    <p>Album: {{getSongInfo.album.name}}</p>
-    <img :src="getSongInfo.thumbnails[1].url" alt="thumbnail">
-    <span class="play-button">
-        <i @click="play(videoId); setCurrentSong(); playerToggle()" class="fas fa-play"></i>
+     <span class="play-button">
+        <i @click="play(videoId); setCurrentSong(); playerToggle()" class="fas fa-play play-button-song"></i>
+        <img :src="getSongInfo.thumbnails[1].url" alt="thumbnail">
     </span>
+    <h2>Name: {{getSongInfo.name}}</h2>
+    <h2>Artist: {{getSongInfo.artist.name}}</h2>
+    <h2>Album: {{getSongInfo.album.name}}</h2>
 </div>
 </template>
 
