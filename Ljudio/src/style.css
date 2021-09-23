@@ -327,5 +327,10 @@ th{
         width: 40%;
         cursor: pointer;
     }
+    .music-article>span:first-child>img{
+        border-radius: 1vmax 0px 0px 1vmax;
+        height: 100%;
+        width: 100%;
+    }
       
   }
