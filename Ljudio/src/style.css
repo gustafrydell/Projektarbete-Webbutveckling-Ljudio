@@ -67,6 +67,11 @@ nav{
     height: 100%;
 }
 
+.artist-description{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
 
 .song-article{
     display: flex;

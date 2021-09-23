@@ -4,7 +4,7 @@
     <hr>
     <img class="artist-img" :src="getArtist.thumbnails[1].url" alt="">
     <h2>{{getArtist.name}}</h2>
-    <p>{{getArtist.description}}</p>
+    <p class="artist-description">{{getArtist.description}}</p>
     <hr>
     <div style="margin-bottom: 2%"> 
         <table>
